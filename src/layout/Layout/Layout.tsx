@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Login from '../../components/Login/Login.lazy';
 import Dashboard from '../../pages/Dashboard/Dashboard.lazy';
 import styles from './Layout.module.scss';
 
@@ -21,7 +22,7 @@ const Layout: FC<LayoutProps> = ({header, footer}) => (
     <Routes>
       <Route path='/Dashboard' element = {<Dashboard/>}/>
       <Route path='/' element = {<div>Home Comonent</div>}/>
-      <Route path='/Login' element = {<div>Login Component</div>}/>
+      <Route path='/Login' element = {<Login/>}/>
     </Routes>
     </div>
     <footer>

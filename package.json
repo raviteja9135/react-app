@@ -54,6 +54,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
     "node-sass": "^7.0.3",
-    "node-scss": "^7.0.3"
+    "node-scss": "^7.0.3",
+    "sass-loader": "^13.2.0"
   }
 }

@@ -5,7 +5,7 @@ interface LoginProps {}
 
 const Login: FC<LoginProps> = () => (
   <div className={styles.Login} data-testid="Login">
-    Login Component
+    <input type="text" name="userName" id="userName" />
   </div>
 );
 
