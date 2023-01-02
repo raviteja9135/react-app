@@ -1,1 +1,9 @@
-.Dashboard {}
+.Dashboard {
+    min-height: 900px;
+    display: block;
+    margin:50px;
+    .search {
+        margin: 20px;
+    }
+
+}

@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component, Suspense } from 'react';
+import './App.scss';
+import Footer from './components/Footer/Footer.lazy';
+import Header from './components/Header/Header.lazy';
 import Layout from './layout/Layout/Layout.lazy';
-import Dashboard from './pages/Dashboard/Dashboard';
+
+
 
 class App extends Component {
   render(): React.ReactNode {
       return (
         <div className="App">
-          <header className="App-header">
-          </header>
-          {/* <Layout>
-            <Dashboard></Dashboard>
-          </Layout> */}
+          <Suspense fallback={<div>... Loading</div>}>
+            <Layout header={<Header/>} footer={<Footer/>}/>
+          </Suspense>
         </div>
       );
   }

@@ -1,10 +1,9 @@
-import React, { Children, lazy, Suspense } from 'react';
-
+import { lazy, Suspense } from 'react';
 const LazyLayout = lazy(() => import('./Layout'));
 
-const Layout = (props: JSX.IntrinsicAttributes & { children?: React.ReactNode; }) => (
+const Layout = (props:any) => (
   <Suspense fallback={null}>
-    <LazyLayout/>
+    <LazyLayout {...props} />
   </Suspense>
 );
 

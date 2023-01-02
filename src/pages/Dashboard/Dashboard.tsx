@@ -1,13 +1,27 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Search from '../../components/Search/Search.lazy';
 import styles from './Dashboard.module.scss';
 
 interface DashboardProps {}
 
-const Dashboard: FC<DashboardProps> = () => (
+const Dashboard: FC<DashboardProps> = () => {
+  function updatedData (data: string[]) {
+    // console.log(data);
+  }
+  function showComponent() {
+      return (
+        <div className='search'>
+          <Search someText={updatedData}></Search>
+        </div>
+      )
+    
+  }
+  
+  return (
   <div className={styles.Dashboard} data-testid="Dashboard">
-    <Search></Search>
+    {showComponent()}
   </div>
 );
+  };
 
 export default Dashboard;

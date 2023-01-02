@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 
 const LazySearch = lazy(() => import('./Search'));
 
-const Search = (props: JSX.IntrinsicAttributes & { children?: React.ReactNode; }) => (
+const Search = (props: any & { children?: React.ReactNode; }) => (
   <Suspense fallback={<div> ... Loading</div>}>
     <LazySearch {...props} />
   </Suspense>
