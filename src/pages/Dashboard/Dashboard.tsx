@@ -11,7 +11,7 @@ const Dashboard: FC<DashboardProps> = () => {
   function showComponent() {
       return (
         <div className='search'>
-          <Search someText={updatedData}></Search>
+          <Search ></Search>
         </div>
       )
     

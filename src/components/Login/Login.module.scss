@@ -1,8 +1,24 @@
 .Login {
     min-height: 900px;
 
-    #userName {
-        margin: 20px;
+    input {
+        &[class=input-text] {
+            margin: 20px; 
+        }
+        &[class=password] {
+            margin: 50px;
+        }    
+    }
+
+    button {
+        &[class=set-login] {
+            margin: 50px;
+            padding: 10px 20px;
+            background-color: rgb(2, 82, 231);
+            border: 2px #000 solid;
+            color: azure;
+            border-radius: 2px;
+        }
     }
 }
 

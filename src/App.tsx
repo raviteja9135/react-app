@@ -7,7 +7,14 @@ import Layout from './layout/Layout/Layout.lazy';
 
 
 class App extends Component {
+constructor(private navigate:any) {
+  super(navigate);
+  
+}
+
+
   render(): React.ReactNode {
+    
       return (
         <div className="App">
           <Suspense fallback={<div>... Loading</div>}>

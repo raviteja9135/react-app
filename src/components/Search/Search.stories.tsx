@@ -5,11 +5,7 @@ export default {
   title: "Search",
 };
 
-function someText() {
-  console.log('test search');
-}
-
-export const Default = () => <Search someText={someText} />;
+export const Default = () => <Search />;
 
 Default.story = {
   name: 'default',

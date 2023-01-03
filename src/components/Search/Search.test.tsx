@@ -5,10 +5,7 @@ import Search from './Search';
 
 describe('<Search />', () => {
   test('it should mount', () => {
-    function someText() {
-      
-    }
-    render(<Search someText={someText} />);
+    render(<Search  />);
     
     const search = screen.getByTestId('Search');
 

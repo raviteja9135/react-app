@@ -1,83 +1,52 @@
-import { FC, useEffect, useRef, useState } from 'react';
-import { connect } from 'react-redux';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectUser } from '../../store/userDetailsReducer';
-import styles from './Search.module.scss';
-
-
-
- interface list {
-  key: number,
-  item: string
- }
- 
+import { FC } from 'react';
+import { useAppSelector } from '../../store/hooks';
+import { selectUser, User } from '../../store/userDetailsReducer';
+import styles from './Search.module.scss'; 
  interface SearchProps {
-  someText(list:list[]): void;
  }
 
-const Search: FC<SearchProps> = ({someText}):JSX.Element => {
+const Search: FC<SearchProps> = ():JSX.Element => {
   const user = useAppSelector(selectUser);
-  const dispatch = useAppDispatch();
-  
-  const [list, setList] = useState<{key: number, item:string}[]>([]);
-  const addInput = useRef<HTMLInputElement>(null);
-  
-  function search() {
-    dispatch({type:'userDetail/update',
-  payload: {userName: 'Ravi', pasword:"teja"}});
-  }
 
-  useEffect(() => {
-  },[user])
-
-  function addValueToList() {
-
-    if (addInput.current && addInput.current.value !== '') {
-      setList([
-        ...list,
-        {
-        key: list.length+1,
-        item: addInput.current.value
-        }
-      ]);
-      addInput.current.value = '';
-    }
-  }
-
-  function rows(list: list) {
+ 
+  function rows(user: User, index: number) {
     return (
-      <tr key={list.key}>
-        <td>{list.key}</td>
-        <td>{list.item}</td>
+      <tr key={index}>
+        <td>{index}</td>
+        <td>{user.userName}</td>
+        <td>{user.password}</td>
       </tr>
     );
   }
 
   function showDetails() {
-    someText(list);
-    return list.map((ref: list) => {
-      return rows(ref);
+    return user.userList.map((user: User, index) => {
+      if (user.userName && user.password) {
+        return rows(user, index);
+      }
+      return false;
     });
   }
 
   return (
     <>
       <div className={styles.Search} data-testid="Search">
-        <input placeholder='Add To List'className='add-input' ref={addInput} required />
-        <button type='button' onClick={addValueToList}> add</button>
+        <input placeholder='Search'className='add-input'/>
+        <button type='button'> add</button>
         <br />
         <br />
-        <input placeholder='Search' onChange={search} />
       </div>
       <div>
-        <div>{user.password}</div>
-        <div>{user.userName}</div>
+        <div><h3>Welcome User {user.current.userName}</h3> </div>
+        <div><h3>Your Password is {user.current.password}</h3></div>
       </div>
+      <h2> Please find below the list of users logged in</h2>
       <table>
         <thead>
           <tr>
             <th>S.no</th>
-            <th>List</th>
+            <th>User Name</th>
+            <th>Passowrd</th>
           </tr>
         </thead>
         <tbody>
@@ -89,5 +58,5 @@ const Search: FC<SearchProps> = ({someText}):JSX.Element => {
   );
 }
 
-export default connect()(Search);
+export default Search;
 
