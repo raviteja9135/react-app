@@ -1,58 +1,70 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser, User } from '../../store/userDetailsReducer';
-import styles from './Search.module.scss'; 
- interface SearchProps {
- }
+import styles from './Search.module.scss';
+import { getListData } from './Search.service';
+interface SearchProps {
+}
 
-const Search: FC<SearchProps> = ():JSX.Element => {
+const Search: FC<SearchProps> = (): JSX.Element => {
   const user = useAppSelector(selectUser);
+  const [userList, setUserList] = useState<User[]>([]);
 
- 
   function rows(user: User, index: number) {
     return (
       <tr key={index}>
         <td>{index}</td>
-        <td>{user.userName}</td>
-        <td>{user.password}</td>
+        <td>{user.firstName}</td>
+        <td>{user.lastName}</td>
+        <td>{user.email}</td>
+        <td>{user.phone}</td>
       </tr>
     );
   }
 
-  function showDetails() {
-    return user.userList.map((user: User, index) => {
-      if (user.userName && user.password) {
-        return rows(user, index);
-      }
-      return false;
-    });
+  async function showDetails() {
+    await getListData().then((obj:User[]) => {
+      setUserList(prevState => [
+        ...prevState, ...obj
+      ]);
+  });
   }
 
   return (
     <>
       <div className={styles.Search} data-testid="Search">
-        <input placeholder='Search'className='add-input'/>
-        <button type='button'> add</button>
+        <input placeholder='Search' className='add-input' />
+        <button type='button' onClick={showDetails}> add</button>
         <br />
         <br />
       </div>
       <div>
-        <div><h3>Welcome User {user.current.userName}</h3> </div>
-        <div><h3>Your Password is {user.current.password}</h3></div>
+        <div><h3>Welcome User {user.firstName}</h3> </div>
+        <div><h3>Your Last Name is {user.lastName}</h3></div>
+        <div><h3>Your Email is {user.email}</h3></div>
+        <div><h3>Your Phone is {user.phone}</h3></div>
       </div>
       <h2> Please find below the list of users logged in</h2>
       <table>
         <thead>
           <tr>
             <th>S.no</th>
-            <th>User Name</th>
-            <th>Passowrd</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
           </tr>
         </thead>
         <tbody>
-          {showDetails()}
-          </tbody>
-          <tfoot></tfoot>
+          {userList.map((user: User, index) => {
+            if (user.firstName) {
+              return rows(user, index)
+            }
+            return false;
+          }
+          )}
+        </tbody>
+        <tfoot></tfoot>
       </table>
     </>
   );
