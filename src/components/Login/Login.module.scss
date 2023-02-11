@@ -1,13 +1,16 @@
 .Login {
     min-height: 900px;
+    .FormGroup {
+        margin: 50px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
 
-    input {
-        &[class=input-text] {
-            margin: 20px; 
+        div {
+            width: 40%;
+            margin-bottom: 20px;
         }
-        &[class=password] {
-            margin: 50px;
-        }    
     }
 
     button {

@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { redirect, Route, Routes, Navigate } from 'react-router-dom';
 import Login from '../../components/Login/Login.lazy';
+import Profile from '../../components/Profile/Profile';
 import Dashboard from '../../pages/Dashboard/Dashboard.lazy';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser } from '../../store/userDetailsReducer';
@@ -32,6 +33,7 @@ const Layout: FC<LayoutProps> = ({header, footer}) =>{
       path="*"
       element={<Navigate to="/" />}
     />
+    <Route path='/Profile' element = {<Profile/>}/>
     </Routes>
     </div>
     <footer>

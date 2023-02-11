@@ -1,0 +1,42 @@
+.Profile {
+    .form {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .FormGroup {
+        width:50%;
+        .Input {
+            // input css
+            min-width: 50%;
+            margin: 10px auto;
+        }
+
+        .button {
+            width: 40%;
+            margin: 10px auto;
+        }
+    }
+    div {
+        .picAI {
+            min-width: 40%;
+            min-height: 40%;
+            background-color: whitesmoke;
+        }
+        
+    }
+    
+    .FormControl {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 50%;
+        justify-content: space-evenly;
+        align-content: flex-start;
+        min-height: 400px;
+        padding: 30px;
+        
+        
+        
+    }
+}
