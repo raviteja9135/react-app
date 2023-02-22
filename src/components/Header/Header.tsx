@@ -3,11 +3,14 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import AdbIcon from '@mui/icons-material/Adb';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../store/userDetailsReducer';
 
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
   const navItems = ['Dashboard', 'Search'];
+  const user = useSelector(selectUser);
   const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Logout'];
   function  handleDrawerToggle () {
@@ -66,7 +69,7 @@ const settings = ['Profile', 'Account', 'Logout'];
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{flexglow: 1, mt: '45px' }}
+              sx={{flexglow: 1, mt: '60px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
@@ -81,6 +84,9 @@ const settings = ['Profile', 'Account', 'Logout'];
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem>
+                <Typography>Hi {user.user.firstName}</Typography>
+              </MenuItem>
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center"><Link to={setting}>{setting}</Link></Typography>
@@ -91,7 +97,6 @@ const settings = ['Profile', 'Account', 'Logout'];
         </Toolbar>
       </AppBar>
   </div>
-)
-            };
+)};
 
 export default Header;

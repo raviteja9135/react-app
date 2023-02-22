@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useAppSelector } from '../../store/hooks';
 import { selectUser, User } from '../../store/userDetailsReducer';
 import styles from './Search.module.scss';
@@ -14,10 +14,10 @@ const Search: FC<SearchProps> = (): JSX.Element => {
     return (
       <tr key={index}>
         <td>{index}</td>
-        <td>{user.firstName}</td>
-        <td>{user.lastName}</td>
-        <td>{user.email}</td>
-        <td>{user.phone}</td>
+        <td>{user.user.firstName}</td>
+        <td>{user.user.lastName}</td>
+        <td>{user.user.email}</td>
+        <td>{user.user.phone}</td>
       </tr>
     );
   }
@@ -30,6 +30,10 @@ const Search: FC<SearchProps> = (): JSX.Element => {
   });
   }
 
+  useEffect(() => {
+    return () => {}
+  },[user]);
+
   return (
     <>
       <div className={styles.Search} data-testid="Search">
@@ -39,10 +43,10 @@ const Search: FC<SearchProps> = (): JSX.Element => {
         <br />
       </div>
       <div>
-        <div><h3>Welcome User {user.firstName}</h3> </div>
-        <div><h3>Your Last Name is {user.lastName}</h3></div>
-        <div><h3>Your Email is {user.email}</h3></div>
-        <div><h3>Your Phone is {user.phone}</h3></div>
+        <div><h3>Welcome User {user.user.firstName}</h3> </div>
+        <div><h3>Your Last Name is {user.user.lastName}</h3></div>
+        <div><h3>Your Email is {user.user.email}</h3></div>
+        <div><h3>Your Phone is {user.user.phone}</h3></div>
       </div>
       <h2> Please find below the list of users logged in</h2>
       <table>
@@ -57,7 +61,7 @@ const Search: FC<SearchProps> = (): JSX.Element => {
         </thead>
         <tbody>
           {userList.map((user: User, index) => {
-            if (user.firstName) {
+            if (user.user.firstName) {
               return rows(user, index)
             }
             return false;
